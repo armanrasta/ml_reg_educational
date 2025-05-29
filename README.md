@@ -20,12 +20,17 @@ matplotlib
 ```
 
 ## Usage
-1. Train the model:
+1. CLI run:
+```bash
+python run.py
+```
+
+2. Train the model:
 ```bash
 python car_price_model.py
 ```
 
-2. Make predictions:
+3. Make predictions:
 ```bash
 python predict.py
 ```
