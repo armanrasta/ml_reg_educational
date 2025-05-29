@@ -1,3 +1,13 @@
+"""
+Model Report Generation Module
+
+This module provides functionality to generate comprehensive reports for
+machine learning models, including performance metrics and visualizations.
+
+Classes:
+    ModelReportGenerator: Handles report generation for ML models
+"""
+
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
@@ -9,12 +19,41 @@ import seaborn as sns
 import os
 
 class ModelReportGenerator:
+    """
+    Generates detailed reports for machine learning models including metrics
+    and visualizations.
+
+    Attributes:
+        output_dir (str): Directory where reports will be saved
+    """
+
     def __init__(self, output_dir='reports'):
+        """
+        Initialize the report generator.
+
+        Args:
+            output_dir (str): Output directory for reports
+        """
         self.output_dir = output_dir
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
             
     def generate_report(self, model, X_train, X_test, y_train, y_test, y_pred, feature_importance):
+        """
+        Generate a comprehensive model performance report.
+
+        Args:
+            model: Trained model instance
+            X_train: Training features
+            X_test: Test features
+            y_train: Training target values
+            y_test: Test target values
+            y_pred: Model predictions
+            feature_importance: Feature importance scores
+
+        Returns:
+            str: Path to generated report
+        """
         doc = Document()
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         doc.add_heading('Car Price Prediction Model Report', 0)

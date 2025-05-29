@@ -1,14 +1,38 @@
+"""
+Car Price Prediction Model Implementation
+
+This module implements the training and evaluation of multiple regression models
+for car price prediction. It handles data preprocessing, model training, and
+performance evaluation.
+
+Classes:
+    None
+
+Functions:
+    preprocess_data(df): Preprocesses the raw car data
+    train_models(): Trains and evaluates multiple regression models
+"""
+
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.linear_model import LinearRegression, Ridge, Lasso
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
 import joblib
 from report_generator import ModelReportGenerator
 
 def preprocess_data(df):
+    """
+    Preprocess the raw car data for model training.
+    
+    Args:
+        df (pandas.DataFrame): Raw car data
+
+    Returns:
+        pandas.DataFrame: Preprocessed data
+    """
     # Clean column names
     df.columns = [col.strip().lower() for col in df.columns]
     
@@ -29,6 +53,12 @@ def preprocess_data(df):
     return df
 
 def train_models():
+    """
+    Train multiple regression models and evaluate their performance.
+    
+    Returns:
+        tuple: (best_model, scaler) - The best performing model and its scaler
+    """
     # Read and preprocess data
     df = pd.read_csv('Car_details-v3.csv', engine='python', encoding='utf-8', sep=',', on_bad_lines='skip')
     df = preprocess_data(df)
